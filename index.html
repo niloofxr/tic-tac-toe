@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>.web-overlay{position:fixed;inset:0;z-index:4;pointer-events:none;opacity:0;transition:opacity .5s;background:radial-gradient(circle at 12% 10%,transparent 0 7%,#c7c7c744 7.2% 7.5%,transparent 7.7% 14%,#c7c7c744 14.2% 14.5%,transparent 14.7% 22%,#c7c7c744 22.2% 22.5%,transparent 22.7%),radial-gradient(circle at 88% 90%,transparent 0 8%,#c7c7c744 8.2% 8.5%,transparent 8.7% 16%,#c7c7c744 16.2% 16.5%,transparent 16.7%),repeating-conic-gradient(from 5deg at 12% 10%,transparent 0 9deg,#c7c7c733 9.5deg 10deg,transparent 10.5deg 20deg),repeating-conic-gradient(from 185deg at 88% 90%,transparent 0 9deg,#c7c7c733 9.5deg 10deg,transparent 10.5deg 20deg)}.web-overlay.show{opacity:1;animation:web-flicker 1.2s steps(2)}@keyframes web-flicker{0%{opacity:0}30%{opacity:1}45%{opacity:.45}65%{opacity:1}100%{opacity:1}}</style>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Russo+One&display=swap" rel="stylesheet" />
   <style>
     :root{--bg:#05070d;--panel:#0a1730;--grid:#102d55;--ink:#f4f0e5;--pink:#e51e2a;--cyan:#1875c9;--yellow:#f4c542;--muted:#9aaabe}
@@ -65,7 +66,9 @@
 
     <footer><span>GRIDLOCK / EST. 2024</span><span>NO LUCK. JUST LOGIC.</span></footer>
   </main>
+  <div id="draw-banner" class="draw-banner" aria-live="polite">DRAW</div>
+  <div id="web-overlay" class="web-overlay" aria-hidden="true"></div>
   <canvas id="confetti" aria-hidden="true"></canvas>
-  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script><script src="script.js"></script>
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script><script src="script.js"></script><script>const db=document.querySelector('#draw-banner'),st=document.querySelector('#status-text'),ng=document.querySelector('#new-game'),rs=document.querySelector('#reset-score'),webs=document.querySelector('#web-overlay');let rounds=0,roundLocked=false;new MutationObserver(()=>{if(st.textContent==='DRAW GAME'){db.classList.remove('show');void db.offsetWidth;db.classList.add('show')}if(/WINS|DRAW GAME/.test(st.textContent)&&!roundLocked){roundLocked=true;rounds++;setTimeout(()=>{if(rounds>=3){webs.classList.add('show');setTimeout(()=>{webs.classList.remove('show');rounds=0;rs.click();roundLocked=false},3000)}else{ng.click();roundLocked=false}},1400)}}).observe(st,{childList:true});ng.addEventListener('click',()=>{db.classList.remove('show');webs.classList.remove('show');roundLocked=false});rs.addEventListener('click',()=>{rounds=0;roundLocked=false;webs.classList.remove('show')});</script>
 </body>
 </html>
