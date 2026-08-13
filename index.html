@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neon Tic-Tac-Toe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">✳</span><span>GRID<span class="brand-accent">LOCK</span></span></div>
+      <div></div>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">01 / CLASSIC MODE</p>
+      <h1>Three in a row.<br /><em>Make it count.</em></h1>
+      <p class="intro">A timeless battle of wits. Take your place on the grid and lock in your move.</p>
+    </section>
+
+    <section class="game-layout" aria-label="Tic-tac-toe game">
+      <aside class="score-panel">
+        <p class="section-label">SCOREBOARD</p>
+        <div class="score-card active-x">
+          <div class="player-heading"><span class="symbol x-symbol">×</span><span>PLAYER X</span></div>
+          <strong id="score-x">0</strong>
+          <span class="score-caption">FIRST MOVE</span>
+        </div>
+        <div class="score-card">
+          <div class="player-heading"><span class="symbol o-symbol">○</span><span>PLAYER O</span></div>
+          <strong id="score-o">0</strong>
+          <span class="score-caption">SECOND MOVE</span>
+        </div>
+        <div class="draw-count"><span>DRAWS</span><strong id="score-draw">0</strong></div>
+      </aside>
+
+      <div class="board-wrap">
+        <div class="mode-switch" aria-label="Game mode"><button class="mode-button" data-mode="local">2 PLAYER</button><button class="mode-button selected" data-mode="ai">VS AI</button><button class="mode-button" data-mode="online">ONLINE</button></div>
+        <div id="online-panel" class="online-panel" hidden><button id="create-room" class="small-button">CREATE ROOM</button><button id="copy-room" class="small-button" hidden>COPY INVITE LINK</button><span id="room-status">Create a room and share the link.</span></div>
+        <div class="status" aria-live="polite"><span class="turn-label">CURRENT TURN</span><span id="status-symbol" class="status-symbol x-symbol">×</span><span id="status-text">PLAYER X</span></div>
+        <div class="board" role="grid" aria-label="Game board">
+          <button class="cell" data-cell="0" aria-label="Top left"></button>
+          <button class="cell" data-cell="1" aria-label="Top center"></button>
+          <button class="cell" data-cell="2" aria-label="Top right"></button>
+          <button class="cell" data-cell="3" aria-label="Middle left"></button>
+          <button class="cell" data-cell="4" aria-label="Center"></button>
+          <button class="cell" data-cell="5" aria-label="Middle right"></button>
+          <button class="cell" data-cell="6" aria-label="Bottom left"></button>
+          <button class="cell" data-cell="7" aria-label="Bottom center"></button>
+          <button class="cell" data-cell="8" aria-label="Bottom right"></button>
+        </div>
+        <div class="actions"><button id="new-game" class="primary-button">NEW GAME <span>↗</span></button><button id="reset-score" class="text-button">RESET SCORES</button></div>
+      </div>
+    </section>
+
+    <footer><span>GRIDLOCK / EST. 2024</span><span>NO LUCK. JUST LOGIC.</span></footer>
+  </main>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script><script src="script.js"></script>
+</body>
+</html>
